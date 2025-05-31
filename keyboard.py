@@ -1,24 +1,12 @@
-import subprocess, os, time
-from pprint import pprint as pp
+import time, os
 from string import ascii_lowercase as char
-from typing import Tuple
+from typing import Dict
 
-
+# from helpers import *  # TODO move these to helper file
 
 ENUM_LETTERS = {l: i for i, l in enumerate(char)}
 
-# show color
-
-def validate_input(input):
-    """
-    Validate under 25 and return 
-    its numeric value from ENUM_LETTERS dict
-    """
-    if not under_25(ENUM_LETTERS[input]):
-        raise ValueError(f"Must be on of the following: \n {char}")
-
-    return ENUM_LETTERS[input]
-
+# Helper functions
 def within_range(lower, input, upper) -> bool:
     return lower <= input <= upper
 
@@ -33,25 +21,30 @@ def under_255(value):
 
 class RGB:
 
-    def __init__(self):
-
-        self.r = 0
-        self.g = 0
-        self.b = 0
+    def __init__(self):  # TODO change to dictionary
+        self.rgb = {'r': 0, 'g': 0, 'b': 0}
 
     def validate_input(self, input):
         """
         Validate under 25 and return 
         its numeric value from ENUM_LETTERS dict
         """
-
         try:
+            input = input.lower()
             under_25(ENUM_LETTERS[input])
-        except KeyError:
-            print(f'{input} not allowed, passing')
-            return 10
+            return ENUM_LETTERS[input]
+        except (KeyError, ValueError):
+            msg = f'{input} not allowed, returning default: '
+            if isinstance(input, str):
+                i = 'l'
+                print(msg, i)
+                return i
+            if isinstance(input, int):
+                i = 10
+                print(msg, 10)
+                return 10
 
-        return ENUM_LETTERS[input]
+
 
     def map_to_r(self, input) -> int:
         """Letter number, exagerated for effect"""
@@ -60,8 +53,6 @@ class RGB:
         r = int((input * 1000) % 255)
         if under_255(r):
             return r
-
-        # otherwise return default value
         else: 
             return 130
 
@@ -83,34 +74,33 @@ class RGB:
             return input * 9
 
 
-    def collect_rgb(self, input) -> Tuple[int, int, int]:
+    def collect_rgb(self, input) -> Dict[str, int]:  # TODO change to return rgb dict
         """
-        Collect r, g, b values from input
-        using dedicated functions. 
-        
         Returns:
-            Tuple[int, int, int]  # rgb
+            Dict[str, int]  #rgb
         """
 
-        self.r = self.map_to_r(input)
-        self.g = self.map_to_g(input)
-        self.b = self.map_to_b(input)
+        r = self.map_to_r(input)
+        g = self.map_to_g(input)
+        b = self.map_to_b(input)
 
-        return (self.r, self.g, self.b)
+        self.rgb = {'r': r, 'g': g, 'b': b}
+        return self.rgb
 
 
-def run(input):
+def run(input):  # TODO move to main file
         color = RGB()
-        tuple = color.collect_rgb(input)
-        print(tuple)
+        dict = color.collect_rgb(input)
+        print(dict)
 
         time.sleep(0.5)
 
-        if tuple == tuple:
-            input == None
+        # if dict == dict:
+        #     input == None
 
+        return dict
 
-
+# TODO move to main file
 if __name__ == '__main__':
     while True:
         run(input())
