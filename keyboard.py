@@ -44,8 +44,12 @@ class RGB:
         Validate under 25 and return 
         its numeric value from ENUM_LETTERS dict
         """
-        if not under_25(ENUM_LETTERS[input]):
-            raise ValueError(f"Must be on of the following: \n {char}")
+
+        try:
+            under_25(ENUM_LETTERS[input])
+        except KeyError:
+            print(f'{input} not allowed, passing')
+            return 10
 
         return ENUM_LETTERS[input]
 
