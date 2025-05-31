@@ -19,7 +19,7 @@ def main():
     # set up canvas
     root = tk.Tk()
     root.title('Real time color rgb')
-    canvas = tk.Canvas(root, width=20, height=200)
+    canvas = tk.Canvas(root, width=200, height=200)
     canvas.pack()
 
     # Start the update cycle
