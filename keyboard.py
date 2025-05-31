@@ -1,8 +1,11 @@
-from string import ascii_lowercase as lc
+import subprocess, os, time
+from pprint import pprint as pp
+from string import ascii_lowercase as char
 from typing import Tuple
 
 
-ENUM_LETTERS = {l: i for i, l in enumerate(lc)}
+
+ENUM_LETTERS = {l: i for i, l in enumerate(char)}
 
 # show color
 
@@ -11,27 +14,32 @@ def validate_input(input):
     Validate under 25 and return 
     its numeric value from ENUM_LETTERS dict
     """
-    if not under_25(ENUM_LETTERS[input]) and input.lower() in enum_letters:
-        raise ValueError('must be a letter')
+    if not under_25(ENUM_LETTERS[input]):
+        raise ValueError(f"Must be on of the following: \n {char}")
 
     return ENUM_LETTERS[input]
 
 def get_input(input):
     while True:
-        return validate_input(input)
+        # time.wait  TODO update every 1 second
+        return input
 
-def under_25(input):
-    return True if input <= 25 else False
+def within_range(lower, input, upper) -> bool:
+    return lower <= input <= upper
+
+def under_25(input) -> bool:
+#    return True if 0 <= input <= 25 else False
+    return within_range(0, input, 25)
 
 def under_255(value):
     """Max rgb value is 255"""
-    return True if value <= 255 else False
+    return within_range(0, value, 255)
+
 def map_to_r(input):
     """Letter number, exagerated for effect"""
     input = validate_input(input)
     r = int((input * 1000) % 255)
     if under_255(r):
-        print("r is: ", r)
         return r
 
         # otherwise return default value
@@ -41,7 +49,6 @@ def map_to_r(input):
 def map_to_g(input):
     input = (validate_input(input) ** 2)
     if under_255(input):
-        print('g is ', input)
         return input
     else:
         val = (input // 2) - 255
@@ -52,16 +59,10 @@ def map_to_g(input):
 def map_to_b(input) -> int:
     input = validate_input(input)
     if input >= 21:
-        print('b is ', input * 12)
         return input * 12
     else:
-        print('b is ', input * 9)
         return input * 9
 
-
-def assemble_rgb(r, g, b) -> Tuple[int, int, int]:
-    print("rgb = ", r, g, b)
-    return (r, g, b)
 
 class RGB:
 
@@ -86,8 +87,23 @@ class RGB:
 
         return (self.r, self.g, self.b)
 
-# testing
-input = 'l'
-print('for given input: ', input)
-color = RGB()
-print(color.collect_rgb(input))
+def run(input):
+    while True:
+    # testing  # TODO this will be replaced with test-keyboard file when imported with pytest
+        color = RGB()
+        tuple = color.collect_rgb(input)
+        print(tuple)
+
+        time.sleep(0.5)
+
+        if tuple == tuple:
+            break
+
+
+if __name__ == '__main__':
+    # subprocess.call()
+
+    input = input()
+    run(input)
+
+
