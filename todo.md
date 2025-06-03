@@ -1,4 +1,5 @@
-[ ]: handle invalid B values (currently goes over 250 still) - validator could spot any that are over 250 and just replace with 250
+[ ]: handle invalid B values (currently 'w' onwards goes over 250 still) - validator could spot any that are over 250 and just replace with 250
+[ ]: make it update automatically on a change, rather than having to press enter every time? How can I MVP this for live pitch but also live typing on keyboard (not having to press enter for each letter)?
 [ ]: paramaterize tests for all string letters items - this should **pass**
 [ ]: show color live, updating with default when no user input. Have default state of updating every 0.5 seconds.
 [ ]: write a test for showing color live, and default values
