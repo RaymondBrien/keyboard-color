@@ -40,11 +40,16 @@ def test_validate_input(rgb, input, expected):
     """
     assert rgb.validate_input(input) == expected
 
-def test_map_to_r(rgb):
-    ...
+@pytest.mark.parametrize("input", ["z", "a"])
+def test_map_to_r_under_255(rgb, input):
+    assert rgb.map_to_r(input) <= 255
+    with pytest.raises(TypeError):
+        assert rgb.map_to_r(1)
 
-def test_map_to_g(rgb):
-    ...
+@pytest.mark.parametrize("input", ["z", "a"])
+def test_map_to_g(rgb, input):
+    assert rgb.map_to_g(input) <= 255
 
-def test_map_to_b(rgb):
-    ...
+@pytest.mark.parametrize("input", ["z", "a"])
+def test_map_to_b(rgb, input):
+    assert rgb.map_to_b(input) <= 255
