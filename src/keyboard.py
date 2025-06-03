@@ -1,22 +1,22 @@
-import time, os
-from string import ascii_lowercase as char
 from typing import Dict
+import time, os
 
+from src.constants import ENUM_LETTERS
+from src.helpers import *
 # from helpers import *  # TODO move these to helper file
 
-ENUM_LETTERS = {l: i for i, l in enumerate(char)}
 
-# Helper functions
-def within_range(lower, input, upper) -> bool:
-    return lower <= input <= upper
+# # Helper functions
+# def within_range(lower, input, upper) -> bool:
+#     return lower <= input <= upper
 
-def under_25(input) -> bool:
-#    return True if 0 <= input <= 25 else False
-    return within_range(0, input, 25)
+# def under_25(input) -> bool:
+# #    return True if 0 <= input <= 25 else False
+#     return within_range(0, input, 25)
 
-def under_255(value):
-    """Max rgb value is 255"""
-    return within_range(0, value, 255)
+# def under_255(value):
+#     """Max rgb value is 255"""
+#     return within_range(0, value, 255)
 
 
 class RGB:
@@ -31,24 +31,22 @@ class RGB:
         """
         try:
             input = input.lower()
-            under_25(ENUM_LETTERS[input])
+            # under_25(ENUM_LETTERS[input])  # TODO not needed? Checking under 25 for what purpose?
             return ENUM_LETTERS[input]
         except (KeyError, ValueError):
             msg = f'{input} not allowed, returning default: '
-            if isinstance(input, str):
-                i = 'l'
-                print(msg, i)
-                return i
-            if isinstance(input, int):
-                i = 10
-                print(msg, 10)
-                return 10
+            # if isinstance(input, str): # TODO not good use case, remove. Should only return ints
+            #     i = 'l'
+            #     print(msg, i)
+            #     return i
+            i = 10
+            print(msg, i)
+            return 10
 
 
 
     def map_to_r(self, input) -> int:
         """Letter number, exagerated for effect"""
-
         input = self.validate_input(input)
         r = int((input * 1000) % 255)
         if under_255(r):
