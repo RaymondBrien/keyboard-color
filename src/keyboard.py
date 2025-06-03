@@ -61,6 +61,8 @@ class RGB:
 
     def collect_rgb(self, input) -> Dict[str, int]:  # TODO change to return rgb dict
         """
+        Based on single input, map its rgb value, save in memory.
+
         Returns:
             Dict[str, int]  #rgb
         """
