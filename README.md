@@ -1,7 +1,5 @@
-see todo.md for next steps
+Proof of concept for live color visualiser. Next steps will be using live FFT to send this a note name instead of keyboard input.
 
-AFTER FIRST TO_DO's COMPLETE:
+Future features:
 
-1. extend this for then instead of keyboard, using live picth tracking, which returns a live note (letter), which can visualise
-
-2. start making visual component more dynamic, changing with more sound params which can affect shape etc
+1. make visual component more dynamic, changing with more sound params which can affect shape etc
