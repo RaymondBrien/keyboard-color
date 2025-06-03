@@ -1,11 +1,11 @@
-[ ]: handle invalid B values (currently 'w' onwards goes over 250 still) - validator could spot any that are over 250 and just replace with 250
-[ ]: make it update automatically on a change, rather than having to press enter every time? How can I MVP this for live pitch but also live typing on keyboard (not having to press enter for each letter)?
-[ ]: paramaterize tests for all string letters items - this should **pass**
-[ ]: show color live, updating with default when no user input. Have default state of updating every 0.5 seconds.
-[ ]: write a test for showing color live, and default values
+Quicker way to do this would be to predefine a dictionary with random values for each letter.
+Then quick hash lookup per letter entry
+
+Can this be done with CPython for faster parsing? Currently slower than a snail.
 
 # tests to write:
     # check display falls back gracefully if invalid rgb
     # how does RGB class handle losing contact with display?
     # how does display handle different tuple feed regularities? eg every 0.5 seconds, every 0.1s, every minute, series of repeats, does that break?
+    # load testing - how many inputs before it times out?
 
