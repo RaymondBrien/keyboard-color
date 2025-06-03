@@ -1,7 +1,7 @@
 import tkinter as tk
 
-import keyboard
-import visualiser
+import src.keyboard as keyboard
+import src.visualiser as visualiser
 
 REFRESH_TIME = 1
 

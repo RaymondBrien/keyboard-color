@@ -3,9 +3,9 @@ def within_range(lower, input, upper) -> bool:
     return lower <= input <= upper
 
 def under_25(input) -> bool:
-#    return True if 0 <= input <= 25 else False
-    return within_range(0, input, 25)
+    """less then or equal to 25, returned as bool"""
+    return input <= 25
 
-def under_255(value):
-    """Max rgb value is 255"""
-    return within_range(0, value, 255)
+def under_255(input):
+    """Max rgb value is 255, Returns bool, less than or equal to 255"""
+    return input <= 255
