@@ -5,6 +5,7 @@ from logging import log
 from src.constants import ENUM_LETTERS
 from src.helpers import *
 
+
 class RGB:
 
     def __init__(self):  # TODO change to dictionary
@@ -83,9 +84,3 @@ def run(input):
         time.sleep(0.5)
 
         return dict
-
-# # TODO move to main file
-# if __name__ == '__main__':
-#     while True:
-#         run(input())
-

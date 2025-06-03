@@ -2,16 +2,13 @@ import tkinter as tk
 
 import src.keyboard as keyboard
 import src.visualiser as visualiser
-from src.constants import REFRESH_TIME as REFRESH_TIME
 
-
-def update_from_input(canvas):
+def on_key_press(event, canvas):
     try:
-        rgb = keyboard.run(input())
+        rgb = keyboard.run(event.char)
         visualiser.update_color(canvas=canvas, rgb=rgb)
-    except EOFError:
-        return
-    canvas.after(REFRESH_TIME, lambda: update_from_input(canvas))
+    except Exception as e:
+        print(f"Error: {e}")
 
 
 def main():
@@ -21,8 +18,9 @@ def main():
     canvas = tk.Canvas(root, width=200, height=200)
     canvas.pack()
 
-    # Start the update cycle
-    update_from_input(canvas)
+    # Bind key press event
+    root.bind('<Key>', lambda event: on_key_press(event, canvas))
+
     root.mainloop()
 
 
