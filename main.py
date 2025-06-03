@@ -2,8 +2,7 @@ import tkinter as tk
 
 import src.keyboard as keyboard
 import src.visualiser as visualiser
-
-REFRESH_TIME = 1
+from src.constants import REFRESH_TIME as REFRESH_TIME
 
 
 def update_from_input(canvas):
