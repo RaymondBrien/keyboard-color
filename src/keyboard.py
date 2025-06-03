@@ -1,23 +1,9 @@
 from typing import Dict
-import time, os
+import time
+from logging import log
 
 from src.constants import ENUM_LETTERS
 from src.helpers import *
-# from helpers import *  # TODO move these to helper file
-
-
-# # Helper functions
-# def within_range(lower, input, upper) -> bool:
-#     return lower <= input <= upper
-
-# def under_25(input) -> bool:
-# #    return True if 0 <= input <= 25 else False
-#     return within_range(0, input, 25)
-
-# def under_255(value):
-#     """Max rgb value is 255"""
-#     return within_range(0, value, 255)
-
 
 class RGB:
 
@@ -33,14 +19,9 @@ class RGB:
             raise TypeError(f"Input must be type str.\n- {input} of type {type(input)} not allowed")
         try:
             input = input.lower()
-            # under_25(ENUM_LETTERS[input])  # TODO not needed? Checking under 25 for what purpose?
             return ENUM_LETTERS[input]
         except (KeyError, ValueError):
             msg = f'{input} not in ENUM_LETTERS, returning default: '
-            # if isinstance(input, str): # TODO not good use case, remove. Should only return ints
-            #     i = 'l'
-            #     print(msg, i)
-            #     return i
             i = 10
             print(msg, i)
             return 10
@@ -75,7 +56,8 @@ class RGB:
         if under_255(val):
             return val
         else:
-            raise ValueError(f"Input ({input}) too high")
+            log(level=1, msg=ValueError(f"Input ({input}) too high"))
+            return 255
 
     def collect_rgb(self, input) -> Dict[str, int]:  # TODO change to return rgb dict
         """
