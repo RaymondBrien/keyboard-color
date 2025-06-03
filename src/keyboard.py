@@ -2,7 +2,7 @@ from typing import Dict
 import time
 from logging import log
 
-from src.constants import ENUM_LETTERS
+from src.constants import ENUM_LETTERS, RANDOM_DICT
 from src.helpers import *
 
 
@@ -81,6 +81,7 @@ def run(input):
         dict = color.collect_rgb(input)
         print(dict)
 
-        time.sleep(0.5)
-
         return dict
+
+def run_shorter(input):
+    print(RANDOM_DICT)
