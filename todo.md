@@ -1,7 +1,5 @@
-Quicker way to do this would be to predefine a dictionary with random values for each letter.
-Then quick hash lookup per letter entry
-
-Can this be done with CPython for faster parsing? Currently slower than a snail.
+Try quick hash lookup with quick_dict instead.
+ - nb. Can this be done with CPython for faster parsing? Currently slower than a snail.
 
 # tests to write:
     # check display falls back gracefully if invalid rgb
