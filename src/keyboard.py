@@ -75,20 +75,17 @@ class RGB:
         return self.rgb
 
 
-def run(input):  # TODO move to main file
+def run(input):
         color = RGB()
         dict = color.collect_rgb(input)
         print(dict)
 
         time.sleep(0.5)
 
-        # if dict == dict:
-        #     input == None
-
         return dict
 
-# TODO move to main file
-if __name__ == '__main__':
-    while True:
-        run(input())
+# # TODO move to main file
+# if __name__ == '__main__':
+#     while True:
+#         run(input())
 
