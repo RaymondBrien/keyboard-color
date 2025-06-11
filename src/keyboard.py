@@ -1,5 +1,4 @@
 from typing import Dict
-import time
 from logging import log
 
 from src.constants import ENUM_LETTERS, RANDOM_DICT

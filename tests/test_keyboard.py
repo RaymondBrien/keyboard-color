@@ -1,5 +1,5 @@
 import pytest
-from src.keyboard import RGB
+from src.keyboard import RGB, run
 from src.constants import ENUM_LETTERS
 
 @pytest.fixture
@@ -53,3 +53,11 @@ def test_map_to_g_under_255(rgb, input):
 @pytest.mark.parametrize("input", ["z", "a", "q"])
 def test_map_to_b_under_255(rgb, input):
     assert rgb.map_to_b(input) <= 255
+
+@pytest.mark.parametrize("input",
+                         ["C", "i"])
+def test_letter_returns_rgb_dict(input):
+    value =  run(input)
+    assert 'r' in value
+    assert 'g' in value
+    assert 'b' in value
