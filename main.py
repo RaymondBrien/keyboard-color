@@ -1,4 +1,3 @@
-import time
 import tkinter as tk
 
 import src.keyboard as keyboard
@@ -15,31 +14,31 @@ def update_color(event, canvas):
     except Exception as e:
         print(f"Error: {e}")
 
-def process_audio(root, canvas, q, a):
-    q_data = q.get()
+def process_audio(root, canvas, queue, audio):
+    q_data = queue.get()
     if q_data is not None:
-        note_name = a.frequency_to_note_name(q_data, 440)
+        note_name = audio.frequency_to_note_name(q_data, 440)  # TODO have as arg (could change to 442 etc)
         print("loudest frequency:", q_data, "nearest note:", note_name)
-        # Update color based on the note
         update_color(note_name, canvas)
 
     # Schedule the next check
-    root.after(20, lambda: process_audio(root, canvas, q, a))
+    # TODO change time to be dynamic
+    root.after(500, lambda: process_audio(root, canvas, queue, audio))
 
 def main():
-    # set up canvas
+    # Set up canvas
     root = tk.Tk()
     root.title('Real time color rgb')
     canvas = tk.Canvas(root, width=200, height=200)
     canvas.pack()
 
     # Initialize audio processing
-    q = ProtectedList()
-    a = AudioAnalyzer(q)
-    a.start()
+    queue = ProtectedList()
+    audio = AudioAnalyzer(queue)
+    audio.start()
 
     # Start the audio processing loop
-    process_audio(root, canvas, q, a)
+    process_audio(root, canvas, queue, audio)
 
     # Bind key press event for keyboard input
     root.bind('<Key>', lambda event: update_color(event, canvas))
@@ -47,13 +46,10 @@ def main():
     # Start the Tkinter event loop
     root.mainloop()
 
-
-
     # TODO only enable for keyboard inputs
     # Bind key press event
     # root.bind('<Key>', lambda event: update_color(event, canvas))
 
-    # root.mainloop()
 
 
 if __name__ == "__main__":
