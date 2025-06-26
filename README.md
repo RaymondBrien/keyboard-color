@@ -1,4 +1,4 @@
-Proof of concept for live color visualiser. Next steps will be using live FFT to send this a note name instead of keyboard input.
+Proof of concept for visualiser input from keyboard and audio events.
 
 **Instructions**
 Run main
